@@ -1,0 +1,419 @@
+root {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+#reg_item-hr{
+    margin-bottom:0;
+}
+
+.title {
+  text-align: center;
+}
+
+.contents {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}
+
+
+.product-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.product-details label {
+  font-weight: bold;
+  margin-top: 10px;
+  color: black;
+}
+
+.product-details input[type="text"],.product-details textarea {
+  width: 97%;
+  padding: 10px;  
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  resize: none;
+}
+
+.product-details input[type="radio"] {
+  margin-right: 10px;
+}
+
+#submitItem{
+  margin-top: 30px;
+  background-color: #006400;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  height: 50px;
+  width: 100px;
+}
+
+#att_zone{
+   position: relative;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  border: 2px dashed #006400;
+  text-align: center;
+}
+
+#att_zone:empty:before{
+   content : attr(data-placeholder);
+   color : #006400;
+   font-size:.9em;
+}
+
+#btnAtt{
+  margin-top: 30px;
+  background-color: #fff;
+  color: #006400;
+  text-align: center;
+  padding: 10px 0;
+  width: 80%;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.contents label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #006400;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  font-size: large;
+}
+
+.contents input[type="file"] {  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+
+.container{
+  padding: 20px;
+  background: #ffffff;
+  margin-top: 20px;
+  clear: both;
+  border: 20px solid #006400;
+  font-weight: bold;
+  height: 1500px;
+
+}
+
+label{
+  font-size: x-large;
+}
+
+.title{
+  font-size: xx-large;
+}
+
+.radio-group{ 
+  display: inline-block; 
+  *display: inline; 
+  *zoom: 1; 
+  position: relative; 
+  cursor: pointer; 
+  font-size: large; 
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+}
+
+
+.card{
+    margin-top: 15px;
+}
+
+/***********************/
+
+.radio-group {
+  display: flex; /* 라디오 버튼을 가로로 나란히 정렬 */
+  justify-content: space-around; /* 각 라디오 버튼 사이의 간격을 동일하게 설정 */
+  width: 60%; /* 전체 너비를 활용하도록 설정 */
+  border-radius: 10px;
+  height: 50px;
+}
+
+.radio-group input[type=radio] {
+  display: none;
+  
+}
+
+.radio-group label {
+  flex: 1; /* 각 라벨을 동일한 너비로 설정합니다 */
+  display: inline;
+  border-radius: 10px;
+  text-align: center;
+  height: -webkit-fill-available;
+  line-height: 45px;
+  border: 1px solid #006400;
+  border-radius: .25em;
+  padding: .5em .75em;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 40px; /* 버튼 사이의 간격을 조절 */
+}
+
+
+/* Checked */
+.radio-group input[type=radio]:checked + label {
+  background: #006400;
+  color: #fff;
+}
+
+#att_zone img{
+  margin-right: 10px;
+}
+
+
+/******************************************************************/
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.title {
+  text-align: center;
+}
+
+
+.product-details label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.product-details input[type="text"],.product-details textarea {
+  width: 97%;
+  padding: 10px;  
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.product-details input[type="radio"] {
+  margin-right: 10px;
+}
+
+#submitItem{
+  margin-top: 30px;
+  background-color: #006400;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  height: 50px;
+  width: 100px;
+}
+
+#att_zone{
+   position: relative;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  border: 2px dashed #006400;
+  text-align: center;
+}
+
+#att_zone:empty:before{
+   content : attr(data-placeholder);
+   color : #006400;
+   font-size:.9em;
+}
+
+#btnAtt{
+  margin-top: 30px;
+  background-color: #fff;
+  color: #006400;
+  text-align: center;
+  padding: 10px 0;
+  width: 80%;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.contents label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #006400;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  font-size: large;
+}
+
+.contents input[type="file"] {  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+
+
+.container{
+  padding: 20px;
+  background: #ffffff;
+  margin-top: 20px;
+  clear: both;
+  border: 20px solid #006400;
+  font-weight: bold;
+  height: 1550px;
+}
+
+label{
+  font-size: x-large;
+}
+
+.title{
+  font-size: xx-large;
+}
+
+.radio-group{ 
+  display: inline-block; 
+  *display: inline; 
+  *zoom: 1; 
+  position: relative; 
+  cursor: pointer; 
+  font-size: large; 
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+}
+
+.product-details {
+   
+    background-color: #fff;
+    border: none;
+    box-shadow: none;
+    padding: 20px;
+    width: 100%;
+  display: flex;
+  flex-direction: column;
+    padding-top: none;
+}
+
+
+/***********************/
+
+.radio-group {
+  display: flex; /* 라디오 버튼을 가로로 나란히 정렬 */
+  justify-content: space-around; /* 각 라디오 버튼 사이의 간격을 동일하게 설정 */
+  width: 60%; /* 전체 너비를 활용하도록 설정 */
+  border-radius: 10px;
+  height: 50px;
+}
+
+.radio-group input[type=radio] {
+  display: none;
+  
+}
+
+.radio-group label {
+  flex: 1; /* 각 라벨을 동일한 너비로 설정합니다 */
+  display: inline;
+  border-radius: 10px;
+  text-align: center;
+  height: -webkit-fill-available;
+  line-height: 45px;
+  border: 1px solid #006400;
+  border-radius: .25em;
+  padding: .5em .75em;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 40px; /* 버튼 사이의 간격을 조절 */
+}
+
+/* Checked */
+.radio-group input[type=radio]:checked + label {
+  background: #006400;
+  color: #fff;
+}
+
+#att_zone img{
+  margin-right: 10px;
+}
+
+/*************************************/
+
+
+#category {
+   width: 150px;
+   height: 36px;
+   padding: 5px 35px 5px 15px;
+   border-radius: 4px;
+   outline: 0 none;
+   border: 1px solid #006400;
+   font-weight: bold;
+}
+
+
+.catogory{
+      width: inherit;
+      height: inherit;
+      background: transparent;
+      border: 0 none;
+      outline: 0 none;
+      position: relative;
+      z-index: 3;
+      font-size: 30px;
+}
+
+.catogory #catogory option {
+         background: #006400;
+         color: #fff;
+         padding: 3px 0;
+         font-size: 16px;
+         font-weight: bold;
+}
+
+
+.page-wrap {
+   margin-bottom: 20px;
+}

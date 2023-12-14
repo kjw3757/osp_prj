@@ -1,0 +1,109 @@
+{% extends "index.html" %}
+
+{% block section %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function showHeart() {
+        $.ajax({
+            type: 'GET',
+            url: '/show_heart/{{name}}/',
+            data: {},
+            success: function (response) {
+                let my_heart = response['my_heart'];
+                if (my_heart['interested'] == 'Y') {
+                    $("#heart i").addClass("red"); // 클래스 추가
+                    $("#heart").attr("onclick", "unlike()");
+                } else {
+                    $("#heart i").removeClass("red"); // 클래스 제거
+                    $("#heart").attr("onclick", "like()");
+                }
+            }
+        });
+    }
+
+    function toggleHeart() {
+        let currentColor = $("#heart i").css("color");
+        if (currentColor === "grey") { // 'grey' 색상과 비교
+            like();
+        } else {
+            unlike();
+        }
+    }
+
+    function like() {
+        $.ajax({
+            type: 'POST',
+            url: '/like/{{name}}/',
+            data: {
+                interested: "Y"
+            },
+            success: function (response) {
+                alert(response['msg']);
+                $("#heart i").addClass("red"); // 클래스 추가
+            }
+        });
+    }
+
+    function unlike() {
+        $.ajax({
+            type: 'POST',
+            url: '/unlike/{{name}}/',
+            data: {
+                interested: "N"
+            },
+            success: function (response) {
+                alert(response['msg']);
+                $("#heart i").removeClass("red"); // 클래스 제거
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        showHeart();
+    });
+</script>
+
+<div class="product-details">
+    <div class="product-photos">
+        {% for img_url in data.img_paths %}
+            <img src="{{ img_url }}" alt="상품 이미지" width=140 height=200>
+        {% endfor %}
+    </div>
+    <div class="profile-section">
+        <img src="{{ url_for('static', filename='/images/profile.jpg')}}" alt="프로필 사진">
+        <div class="profile-details">
+            <p class="profile-name">판매자 {{data.seller}}</p>
+            <p class="profile-location">
+    {% if data.addr %}
+        거래장소 : {{ data.addr }} / 연락처: <a href="{{ data.phone }}" target="_blank">{{ data.phone }}</a>
+    {% else %}
+        연락처: <a href="{{ data.phone }}" target="_blank">{{ data.phone }}</a>
+    {% endif %}
+</p>
+            </div>
+    </div>
+    <hr>
+    <div class="product-info">
+        <h3><b>{{name}}</b></h3>
+        <p class="product-category" style="font-size: 14px;">{{data.category}} / 판매중</p>
+        <p class="product-price">{{data.price}}원 
+            {% if data['card'] == "Y" %} (카드 결제 가능)
+            {% endif %}
+            {% if data['card'] == "N" %} (카드 결제 불가능)
+            {% endif %}
+        </p>
+
+        <p class="product-description">
+            {{data.description}}
+        </p>
+    
+    <div class="detail_heart_button">
+        <a href="javascript:void(0);" id="heart" onclick="toggleHeart()">
+            <i class="fas fa-heart"></i>
+        </a>
+        <button class="review-button" onclick="location.href='/reg_review_init/{{name}}/';">
+            리뷰등록
+        </button>        
+    </div>
+</div>
+{% endblock section %}

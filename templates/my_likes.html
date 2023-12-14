@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block section %}
+{% if likes %}
+<br>
+<div style="text-align: center;">
+    <p style="font-size: 25px; font-weight: bold;">내가 찜한 목록</p>
+</div>
+
+    <br><br>
+    <div class="product-list">
+        <table>
+            <tr>
+                {% for item in likes %}
+                    <td>
+                        <br>
+                        <div class="product-container" onclick="location.href='/view_detail/{{ item['name']}}/'" style="cursor:pointer;">
+                            <div class="product-image-container">
+                                <img src="{{ item['img_path'] }}" width="150" height="200" class="product-image">
+                                <div class="product-name">{{ item['name'] }}</div>
+                                <div classs="product-price"><p>{{ item['price'] }}원</p></div>
+                                <br>
+                            </div>
+                        </div>
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- 페이지네이션을 위한 코드 시작 -->
+
+{% else %}
+<p>
+    아직 좋아요한 상품이 없습니다.
+</p>
+{% endif %}
+{% endblock section %}

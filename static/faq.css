@@ -1,0 +1,108 @@
+.faq-class{
+    margin-top: 30px;
+}
+
+.faq-class button {
+    width: 80%;
+    height: 50px;
+    margin: 0 auto; /* Add this line to center-align the button */
+    display: block; /* Add this line to ensure it takes the full width */
+    padding: 0px;
+}
+
+.faq-h1{
+    text-align: center;
+    float: center;
+    margin-bottom: 0px;
+}
+.faq-h2{
+    text-align: center;
+    float: center;
+    margin-top: 0px;
+}
+.faq-h3{
+    text-align: center;
+    float: center;
+
+}
+
+
+#section1{
+    width: 90%;
+    margin-left: 35px;
+    margin-top: 20px;
+   
+}
+
+#section2{
+    width: 90%;
+    margin-left: 35px;
+    margin-top: 20px;
+}  
+
+#section3{
+    width: 90%;
+    margin-left: 35px;
+   margin-top: 20px;
+}
+
+
+.question-button{
+     border: 3px  #006400;
+}
+
+
+/***********************************************/
+
+.faq-section .section-content {
+    display: none;
+    padding-left: 20px;
+}
+
+.faq-section h3.section-btn {
+    cursor: pointer;
+    color: #3366cc;
+}
+
+.faq-section h3.section-btn.active {
+    color: #ff6347; /* 버튼 눌렀을 때 색깔 바뀌는거 */
+}
+
+.faq-section h3.section-btn:hover {
+    text-decoration: underline;
+}
+
+.faq-section {
+            display: none;
+        }
+
+.section-button {
+    text-align: center;
+    font-size: 15px;
+    padding: 15px 60px;
+    margin: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 80%;
+}
+
+.question-button {
+    text-align: left;
+    font-size: 15px;
+    padding: 15px 100px;
+    margin: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.answer {
+    text-align: left;
+    color: black;
+    /*background-color: lightgray;*/
+    margin-left: 170px;
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    word-wrap: break-word;
+    
+}

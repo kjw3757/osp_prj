@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block section %}
+{% if results %}
+    <p>
+       총 {{ results|length }}개의 상품이 검색되었습니다.
+    </p>
+<div class="product-list" style=" display: flex; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+    <table>
+        <tr>
+            {% for product in results %}
+          <br>
+                <div class="product-container" onclick="location.href='/view_item_details/{{  product['name'] }}/';"  style="cursor:pointer; margin: 20px 30px 0 30px;">
+                    <div class="product-image-container">
+                         <img src="{{ product.img_paths.0 }}"  width="150" height="200" class="product-image">
+                        <div class="product-name">{{ product['name'] }}</div>
+                        <div class="product-price"><p>{{ product['price'] }}원</p></div>
+                    </div>
+            </div>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+    
+{% else %}
+    <p>
+        검색 결과가 없습니다.
+    </p>
+{% endif %}
+{% endblock section %}

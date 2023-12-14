@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block section %}
+    <div class="review-details">
+        <img src="{{ url_for('static', filename='images/' + request.files.get('file').filename) }}" alt="Product Image">
+        
+        <div class="profile-section">
+            <img src="{{ url_for('static', filename='/images/profile.jpg')}}" alt="프로필 사진">
+            <div class="profile-details">
+                <p class="profile-name">구매자 : {{ session['id'] }} </p>
+            </div>
+        </div>
+        <hr>
+        <div class="review_container">
+            
+            <div class="review-title">
+            <h2>{{ request.form.get('title') }}</h2>
+        </div>
+            
+            <div class="review-info">            
+                <div class="review-information">
+            <p><strong>판매자 :</strong> {{ 'seller_id' }}</p> 
+            <p><strong>별점:</strong> {{ request.form.get('reviewStar') }}/5</p>
+            <p><strong>{{ request.form.get('reviewContents') }} </strong></p>
+                </div>            
+            </div>     
+        </div>
+    </div>
+{% endblock section %}

@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block section %}
+
+<form class="mb-3" name="myform" id="myform" method="post" action="/submit_review_post" enctype="multipart/form-data">
+    <input type="text" name="name" id="name" class="review-input-field"  value="{{name}}" placeholder="상품명을 입력하세요" required><br><br>
+    <input type="text" name="title" id="title" class="review-input-field" value="" placeholder="리뷰 제목을 입력하세요" required><br><br>
+    <fieldset>
+        <span class="text-bold">별점을 선택해주세요</span>
+        <br>
+        <input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
+        <input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>
+        <input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
+        <input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★</label>
+        <input type="radio" name="reviewStar" value="1" id="rate5"><label for="rate5">★</label>
+    </fieldset>
+    <div>
+        <textarea class="col-auto form-control" type="text" name="reviewContents"
+            placeholder="리뷰를 남겨주세요 감사합니다!"></textarea>
+    </div>
+    
+    
+     <div class="review-contents">      
+              <div id="image_preview">
+                  <label for="btnAtt" class="input-file-button">사진 업로드</label>
+                  <input class="file" id="btnAtt" name="file" multiple="multiple" type="file" style="display:none;"> <br><br>
+                  <div id="att_zone" data-placeholder="업로드할 파일을 드래그하세요"></div>
+    </div></div>
+    <input type="submit" value="리뷰등록">
+    
+</form>
+
+{% endblock section %}

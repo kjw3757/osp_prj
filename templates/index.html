@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='login.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='search.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='list.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='product_detail.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='review_detail.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='review.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='uploadProduct.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='faq.css')}}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <script src="{{ url_for('static', filename='main.js')}}" defer></script>
+        <script src="{{ url_for('static', filename='uploadProduct.js')}}" defer></script>
+        <script src="{{ url_for('static', filename='faq.js')}}" defer></script>
+    </head>
+<body>
+    <style>
+    </style>
+    
+     <div class="nav_top">
+         {% if session['id'] %}
+        <a href="/my_likes"><b>{{session['id']}}님 반갑습니다!   </b> <a href="/logout">로그아웃</a> <a href="/mypage">마이페이지</a></a>
+        {% else %}
+        <a href="/signup">회원가입</a>
+        <a href="/login">로그인</a>
+        {% endif %}
+        </div>
+
+    <header>
+        <a href="/">
+            <img src="{{ url_for('static', filename='/images/logo.png')}}" alt="로고">
+        </a>
+    </header>
+
+    <nav class="navbar">
+        <ul class="navbar__menu">  
+             {% if session['id'] %}
+        <li><a href="/list">모든 상품</a></li>
+        <li><a href="/review">모든 리뷰</a></li>
+        <li><a href="/reg_items">상품 올리기</a></li>
+        <li><a href="/reg_reviews">리뷰 올리기</a></li>
+        <li><a href="/faq">자주 묻는 질문</a></li>
+            {% else %}  
+        <li><a href="/list">모든 상품</a></li>
+        <li><a href="/review">모든 리뷰</a></li>
+        <li><a href="/faq">자주 묻는 질문</a></li>
+            {% endif %}
+            
+        </ul>
+        <form action="/search" method="post" onsubmit="return validateSearch()">
+            <input type="text" name="keyword" id="keyword" placeholder="찾고 싶은 물건을 검색해 보세요!">
+            <button type="submit">검색</button>
+        </form>
+    </nav>
+    <section>
+        {% block section %}
+        {% endblock section %}    
+
+    </section>
+
+    <div class="footer">
+      <h2>Ewha O! Soso Market</h2>
+      <p>52, Ewhayeodae-gil, Seodaemun-gu, Seoul, Republic of Korea</p>
+      <p>E-mail : ososo@gmail.com</p>
+    </div>
+    
+</body>
+</html>

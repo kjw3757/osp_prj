@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+
+{% block section %}
+{% if total > 0 %}
+<p>
+   총 {{total}}개 리뷰가 등록 되었습니다
+</p>
+<div class="list"> 
+<br>
+<div class="product-list">
+    <table>
+        <tr>
+            {% for key, value in row1 %}
+            <td>
+                <br>
+                <div class="product-container" onclick="location.href='/view_review_detail/{{ key }}/'" style="cursor:pointer;">
+                    <div class="product-image-container">
+                        <img src="static/images/{{ value.img_path }}" width="150" height="200" class="product-image">
+                        <div class="product-name">{{ value.title }}</div>
+                        <br>
+                    </div>
+                </div>
+            </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for key, value in row2 %}
+            <td>
+            <br>
+                <div class="product-container" onclick="location.href='/view_review_detail/{{ key }}/'" style="cursor:pointer;">
+                    <div class="product-image-container">
+                        <img src="static/images/{{ value.img_path }}" width="150" height="200" class="product-image">
+                        <div class="product-name">{{ value.title }}</div>
+                        <br>
+                    </div>
+                </div>
+            </td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+</div>
+
+<!-- 페이지네이션을 위한 코드 시작 -->
+<div class="page-wrap">
+    <div class="page-nation">
+        <ul>
+            <li>
+                {% for i in range(page_count) %}
+                    <a href="{{ url_for('view_review', page=i) }}">{{ i + 1 }}</a>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+</div>
+{% else %}
+<p>
+    등록된 리뷰가 없습니다.
+</p>
+{% endif %}
+{% endblock section %}
