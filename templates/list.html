@@ -1,0 +1,136 @@
+{% extends "index.html" %}
+
+{% block section %}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    if (typeof jQuery == 'undefined') {
+        // jQuery가 정의되지 않은 경우, 다운로드 후 사용
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://code.jquery.com/jquery-3.6.4.min.js';
+        document.head.appendChild(script);
+    }
+
+    // jQuery 코드 실행
+    $(document).ready(function () { 
+        //alert("{{category}}"); 
+        $('#category option:contains("{{category}}")').prop("selected", true); 
+    });
+</script>
+
+
+{% if total > 0 %}
+<p>
+    총 {{total}}개 상품이 등록 되었습니다
+</p>
+<div class="list">
+    
+<!-- 카테고리 선택 부분 -->
+    
+<div class="category-select">
+    <select id="category" name="category" onchange="location=this.value">
+        <option value="{{url_for('view_list', page=i, category='all')}}" {% if category == 'all' %}selected{% endif %}>전체</option>
+        <option value="{{url_for('view_list', page=i, category='Clothes')}}" {% if category == 'Clothes' %}selected{% endif %}>의류</option>
+        <option value="{{url_for('view_list', page=i, category='Beauty')}}" {% if category == 'Beauty' %}selected{% endif %}>화장품</option>
+        <option value="{{url_for('view_list', page=i, category='Books')}}" {% if category == 'Books' %}selected{% endif %}>책</option>
+        <option value="{{url_for('view_list', page=i, category='Furniture')}}" {% if category == 'Furniture' %}selected{% endif %}>가구</option>
+        <option value="{{url_for('view_list', page=i, category='Electronics')}}" {% if category == 'Electronics' %}selected{% endif %}>전자기기</option>
+        <option value="{{url_for('view_list', page=i, category='ETC')}}" {% if category == 'ETC' %}selected{% endif %}>기타</option>
+    </select>
+</div>
+    
+     <!-- JavaScript 코드를 아래에 넣습니다. -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // DOM이 완전히 로드된 후 실행됩니다.
+
+            // 현재 URL에서 쿼리스트링 읽기
+            var urlParams = new URLSearchParams(window.location.search);
+            var categoryParam = urlParams.get('category');
+
+            // 쿼리스트링에 category 값이 있을 경우, 해당 값으로 셀렉트 박스 선택
+            if (categoryParam) {
+                var categorySelect = document.getElementById('category');
+                var optionToSelect = categorySelect.querySelector('option[value="' + categoryParam + '"]');
+
+                if (optionToSelect) {
+                    optionToSelect.selected = true;
+                }
+            }
+        });
+
+        function changePage(select) {
+            var selectedOption = select.options[select.selectedIndex];
+            var category = selectedOption.value;
+
+            // 페이지 변경
+            location.href = category;
+        }
+    </script>
+
+    
+    <br><br><br><br
+
+    <div class="product-list">
+        <table>
+            <tr>
+                {% for key, value in row1 %}
+                <td>
+                    <br>
+                    <div class="product-container" onclick="location.href='/view_detail/{{ key }}/'"
+                         style="cursor:pointer;">
+                        <div class="product-image-container">
+                            {% if value.img_paths %}
+                            <img src="{{ value.img_paths.0 }}" width="150" height="200"
+                                 class="product-image">
+                            {% else %}
+                            <p>No Image</p>
+                            {% endif %}
+                            <div class="product-name">{{ key }}</div>
+                            <div class="product-price"><p>{{ value.price }}원</p></div>
+                            <br>
+                        </div>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for key, value in row2 %}
+                <td>
+                    <br>
+                    <div class="product-container" onclick="location.href='/view_detail/{{ key }}/'"
+                         style="cursor:pointer;">
+                        <div class="product-image-container">
+                            <img src="{{ value.img_paths.0 }}" width="150" height="200"
+                                 class="product-image">
+                            <div class="product-name">{{ key }}</div>
+                            <div class="product-price"><p>{{ value.price }}원</p></div>
+                            <br>
+                        </div>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- 페이지네이션을 위한 코드 시작 -->
+<div class="page-wrap">
+    <div class="page-nation">
+        <ul>
+            <li>
+                {% for i in range(page_count)%}
+                <a href="{{url_for('view_list', page=i, category=category)}}" color="black">{{i+1}}</a>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+</div>
+{% else %}
+<p>
+   등록된 상품이 없습니다.
+</p>
+{% endif %}
+{% endblock section %}

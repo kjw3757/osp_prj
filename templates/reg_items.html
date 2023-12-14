@@ -1,0 +1,126 @@
+<!-- reg_items.html -->
+{% extends "index.html" %}
+
+{% block section %}
+    <form action="/submit_item_post" method="post" enctype="multipart/form-data">
+    <div class="container">
+      <h2 class="title">내 물건 팔기</h2><hr id=reg_item-hr>    
+
+      <div class="product-details">
+           <div class="contents">      
+      <div id="image_preview">
+        <label for="btnAtt" class="input-file-button">사진 업로드</label>
+        <input class="file" id="btnAtt" name="file" multiple accept="image/*" type="file" style="display:none;"> <br><br>
+        <div id="att_zone" data-placeholder="업로드할 파일을 드래그하세요"></div>
+      </div></div>
+      <br>
+
+      <!-- Firebase와 관련된 JavaScript 코드를 추가합니다. -->
+      <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-storage.js"></script>
+
+      <script>
+        // Firebase 프로젝트 구성 정보로 Firebase를 초기화합니다.
+        const firebaseConfig = {
+          apiKey: "YOUR_API_KEY",
+          authDomain: "YOUR_AUTH_DOMAIN",
+          projectId: "YOUR_PROJECT_ID",
+          storageBucket: "YOUR_STORAGE_BUCKET",
+          messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+          appId: "YOUR_APP_ID"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // 스토리지 서비스에 대한 참조를 가져옵니다.
+        const storage = firebase.storage();
+
+        // 파일 선택을 처리하는 함수를 등록합니다.
+        document.getElementById('btnAtt').addEventListener('change', handleFileSelect);
+
+        function handleFileSelect(event) {
+          const files = event.target.files;
+
+          for (const file of files) {
+            // 저장 위치에 대한 참조를 만듭니다.
+            const storageRef = storage.ref('product_images/' + file.name);
+
+            // 파일을 저장 위치에 업로드합니다.
+            storageRef.put(file).then((snapshot) => {
+              console.log('파일이 업로드되었습니다!');
+
+              // 업로드된 파일의 URL을 가져옵니다.
+              storageRef.getDownloadURL().then((downloadURL) => {
+                // URL을 이미지 미리보기에 추가하거나 데이터베이스에 저장합니다.
+                console.log('다운로드 가능한 파일:', downloadURL);
+
+                // downloadURL을 데이터베이스에 저장하거나 필요에 따라 UI를 업데이트할 수 있습니다.
+                // 예를 들어, downloadURL을 배열에 추가하고 나중에 서버로 전송하여 데이터베이스에 저장할 수 있습니다.
+              });
+            });
+          }
+        }
+      </script>
+
+      <br>
+          
+        <div class="catogory">
+          <label for="category">카테고리</label>
+          <select id="category" name="category">
+            <option value="Clothes" selected="">의류</option>
+            <option value="Beauty">화장품</option>
+            <option value="Books">도서</option>
+            <option value="Furniture">가구</option>
+            <option value="Electronics">전자제품</option>
+            <option value="ETC">기타</option>
+          </select>
+        </div>
+      
+        <label for="name">상품명</label>
+        <input type="text" id="name" name="name" placeholder="상품명을 입력해주세요" required=""><br>          
+        
+        <label for="name">상품 가격</label>
+        <input type="text" id="price" name="price" placeholder="상품의 가격을 입력해주세요" required=""><br><br>
+      
+        <div class="choose">
+          <label>거래 방식 선택</label>
+          <div class="radio-group">
+            <input type="radio" id="delivery" name="transaction" value="택배"><label for="delivery">택배</label>
+            <input type="radio" id="faceToFace" name="transaction" value="직거래"><label for="faceToFace">직거래</label>
+            <input type="radio" id="schoolLocker" name="transaction" value="학교 사물함"><label for="schoolLocker">학교사물함</label>
+          </div>
+      
+          <label for="location" id="locationLabel" style="display: none;">거래 희망 지역</label>
+          <input type="text" id="addr" name="addr" style="display: none;" placeholder="이화여대 ECC, 이대역 등 장소를 입력해주세요!">
+      
+          <br><br>
+        </div>
+      
+        <div class="status">
+          <label for="status">상품 상태 </label>
+          <div class="radio-group">
+            <input type="radio" id="newStatus" name="status" value="new"><label for="newStatus">새 상품</label>
+            <input type="radio" id="lnewStatus" name="status" value="lnew"><label for="lnewStatus">거의 새 상품</label>
+            <input type="radio" id="usedStatus" name="status" value="used"><label for="usedStatus">중고</label>
+          </div>
+        </div>
+      
+        <label for="description">자세한 설명</label>
+        <textarea id="description" name="description" placeholder="상품의 상태에 대해 정확히 알 수 있도록 자세히 설명해주세요!"></textarea> <br>
+      
+        <label for="phone">연락처</label>
+        <input type="text" id="phone" name="phone" placeholder="연락 할 수 있는 오픈 채팅방 주소를 남겨주세요!"required="">
+      
+        <div class="card">
+          <label for="card">카드 결제</label>
+          <div class="radio-group">
+            <input type="radio" id="cardY" name="card" value="Y"><label for="cardY">카드 결제 가능</label>
+            <input type="radio" id="cardN" name="card" value="N"><label for="cardN">카드 결제 불가능</label>
+          </div>
+        </div>
+      
+    <input type="submit" id="submitItem" name="submitItem" value="작성완료">
+      </div>
+    </div>
+</form>
+{% endblock section %}

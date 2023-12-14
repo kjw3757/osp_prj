@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+
+{% block section %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="product-details">
+    <div class="product-photos">
+        {% for img_path in img_paths %}
+            <img src="{{ img_path }}" width=140 height=200>
+        {% endfor %}
+    </div>
+    <div class="profile-section">
+        <img src="{{ url_for('static', filename='/images/profile.jpg')}}" alt="프로필 사진">
+        <div class="profile-details">
+            <p class="profile-name">판매자 {{ session['id'] }}</p>
+            <p class="profile-location">거래장소 : {{data.addr}} / 연락처: <a href="{{data.phone}}" target="_blank">{{data.phone}}</a> </p>
+        </div>
+    </div>
+    <hr>
+    <div class="product-info">
+        <h3><b>{{ data.name }}</b></h3>
+        <p class="product-category" style="font-size: 14px;">{{ data.category }} / 판매중</p>
+        <p class="product-price">{{ data.price }}원 
+            {% if data['card'] == "Y" %} (카드 결제 가능)
+            {% elif data['card'] == "N" %} (카드 결제 불가능)
+            {% endif %}
+        </p>
+
+        <p class="product-description">
+            {{ data.description }}
+        </p>
+    </div>
+</div>
+{% endblock section %}

@@ -1,0 +1,106 @@
+
+.review-title {
+    text-align: left;
+    margin-left: 30px;
+}
+
+.review-info {
+    text-align: left;
+    margin-left: 30px;
+}
+
+ .review-information {
+        font-size: 14px;
+        text-align: left;
+        margin-left: 30px;
+    }
+ .review-information p {
+        font-size: 14px;
+        text-align: left;
+        margin-left: 30px;
+    }
+
+.review-details {
+    max-width: 800px;
+    margin: 10px auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.review-image {
+    height: 300px;
+    width: 250px;
+    object-fit: cover;
+    margin: 10px;
+    border: 2px solid #006400;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+/***********************************************/
+
+
+.profile-section {
+    display: flex;
+    align-items: center;
+}
+
+.profile-section img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+
+.profile-location {
+    font-size: 16px;
+    color: #777;
+}
+
+.star-rating {
+  color: #006400; 
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.product-category, .like-chat-read {
+  font-size: 16px;
+    color: #777;
+}
+
+.product-price{
+  font-weight: bold;
+  color: #006400;
+}
+
+.product-info p {
+  font-size: 18px;
+  text-align: left;      
+}
+
+
+.review-button {
+    border: 5px solid #006400; 
+    color: #006400;    
+    float: right; 
+    margin: 20px 20px 0 -20px; /* Adjust margin as needed to control spacing */
+    width: 100px; 
+    height: 40px;
+    

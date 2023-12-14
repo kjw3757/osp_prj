@@ -1,0 +1,70 @@
+{% extends "index.html" %}
+
+{% block section %}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    if (typeof jQuery == 'undefined') {
+        // jQuery가 정의되지 않은 경우, 다운로드 후 사용
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://code.jquery.com/jquery-3.6.4.min.js';
+        document.head.appendChild(script);
+    }
+
+    // jQuery 코드 실행
+    $(document).ready(function () { 
+        //alert("{{category}}"); 
+        $('#category option:contains("{{category}}")').prop("selected", true); 
+    });
+</script>
+
+{% if user_items %}
+<br>
+<div style="text-align: center;">
+    <p style="font-size: 25px; font-weight: bold;">내 판매 내역</p>
+</div>
+<br><br>
+
+<div class="list">
+<div class="product-list">
+    <table>
+        <tr>
+            {% for item in user_items %}
+            <td>
+                <br>
+                <div class="product-container" onclick="location.href='/view_detail/{{ item['name'] }}/'"
+                     style="cursor:pointer;">
+                    <div class="product-image-container">
+                        <img src="{{ item['data']['img_paths'][0] }}" width="150" height="200"
+                             class="product-image">
+                        <div class="product-name">{{ item['name'] }}</div>
+                        <div class="product-price"><p>{{ item['data']['price'] }}원</p></div>
+                        <br>
+                    </div>
+                </div>
+            </td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+</div>
+
+<!-- 페이지네이션을 위한 코드 시작 -->
+<div class="page-wrap">
+    <div class="page-nation">
+        <ul>
+            <li>
+                {% for i in range(page_count) %}
+                <a href="{{url_for('view_list', page=i)}}" color="black">{{i}}</a>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+</div>
+{% else %}
+<p>
+    판매내역이 없습니다.
+</p>
+{% endif %}
+{% endblock section %}
